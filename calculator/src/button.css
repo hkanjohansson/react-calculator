@@ -1,8 +1,14 @@
 Button {
-  height: 100px;
-  width: 200px;
+  height: 50px;
+  width: 80px;
   font-size: 30px;
   border-radius: 5px;
   color: black;
-  background-color: gray;
+  background-color: lightgray;
+}
+
+.result {
+  height: 60px;
+  border: solid;
+  width: 320px;
 }
