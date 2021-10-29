@@ -1,14 +1,14 @@
-Button {
-  height: 50px;
-  width: 80px;
-  font-size: 30px;
-  border-radius: 5px;
-  color: black;
-  background-color: lightgray;
+.result-display {
+  border: solid;
+  border-color: black;
+  height: 100px;
+  width: 400px;
+  font-size: 60px;
 }
 
-.result {
-  height: 60px;
-  border: solid;
-  width: 320px;
+Button {
+  height: 80px;
+  width: 80px;
+  font-size: large;
+  color: black;
 }
