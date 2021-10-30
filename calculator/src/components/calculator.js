@@ -3,14 +3,14 @@ import '../calculator.css'
 
 function Button({ setResultValue, buttonState }) {
   useEffect(() => {
-    setResultValue()
+    setResultValue([])
   }, [buttonState, setResultValue]) // What variables are these dependent on??
 
   const handleClick = () => {
     if (buttonState === 'C') {
       setResultValue([])
     } else {
-      setResultValue(prev => [prev, buttonState])
+      setResultValue(prev => prev + buttonState)
     } 
   }
 
@@ -75,10 +75,8 @@ function Keypad({ setResultValue }) {
   )
 }
 
-function ResultDisplay() {
-  const [resultValue, setResultValue] = useState([])
-
-  console.log(resultValue)
+function ResultDisplay({resultValue, setResultValue}) {
+  
   return (
     <div>
       <div className='result-display'>{resultValue}</div>
@@ -94,9 +92,15 @@ function ResultDisplay() {
  * @returns <ResultDisplay>
  */
 function Calculator() {
+  const [resultValue, setResultValue] = useState()
+  
+  // Listen for changes and check for operators signs?
+  useEffect(() => {
+    console.log(resultValue)
+  }, [resultValue, setResultValue])
   return (
     <div>
-      <ResultDisplay />
+      <ResultDisplay setResultValue={setResultValue} resultValue={resultValue} />
     </div>
   )
 }
