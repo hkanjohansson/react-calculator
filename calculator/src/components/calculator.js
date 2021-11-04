@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import {evaluate} from 'mathjs'
+import { evaluate, typeOf } from 'mathjs'
 import '../calculator.css'
 
 function Button({ resultValue, setResultValue, buttonState }) {
-  useEffect(() => {
-    setResultValue([])
-  }, [buttonState, setResultValue]) 
 
   const handleClick = () => {
     if (buttonState === 'C') {
@@ -14,15 +11,13 @@ function Button({ resultValue, setResultValue, buttonState }) {
       setResultValue(prev => prev + buttonState)
     } else if (buttonState === '-') {
       setResultValue(prev => prev + buttonState)
-    }
-    else if (buttonState === '*') {
+    } else if (buttonState === '*') {
       setResultValue(prev => prev + buttonState)
     } else if (buttonState === '/') {
       setResultValue(prev => prev + buttonState)
-    }else if (buttonState === '=') {
-      const result = evaluate(resultValue)  
+    } else if (buttonState === '=') {
       setResultValue(prev => prev + buttonState)
-      setResultValue(prev => prev + result)
+      setResultValue(evaluate(resultValue))
     } else {
       setResultValue(prev => prev + buttonState)
     }
@@ -82,7 +77,7 @@ function ResultDisplay({ resultValue }) {
  * @returns <ResultDisplay>
  */
 function Calculator() {
-  const [resultValue, setResultValue] = useState()
+  const [resultValue, setResultValue] = useState('0')
   const [buttonState, setButtonState] = useState({
     one: 1,
     two: 2,
@@ -103,18 +98,18 @@ function Calculator() {
     clear: 'C'
   })
 
-  /**
-   * Borde denna här hantera om +, - etc. har blivit tryckt?
-   */
   useEffect(() => {
-    
-    if (buttonState === '=') {
-      console.log('hej hej')
-      setResultValue(evaluate(resultValue))
+    setResultValue('')
+  }, [buttonState, setResultValue])
+
+  // Is there some way to write numbers that exceeds borders without a linebreak??
+  useEffect(() => {
+    if (resultValue.length % 14 === 0) {
+      setResultValue(prev => prev + '\n')
     }
 
-  }, [buttonState, resultValue, setResultValue])
-
+    
+  }, [resultValue])
   return (
     <div>
       <ResultDisplay setResultValue={setResultValue} resultValue={resultValue} />

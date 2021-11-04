@@ -12,3 +12,8 @@ Button {
   font-size: large;
   color: black;
 }
+
+body {
+  overflow-y: visible;
+  
+}
