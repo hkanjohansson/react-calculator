@@ -1,0 +1,19 @@
+.result-display {
+  border: solid;
+  border-color: black;
+  height: 300px;
+  width: 400px;
+  font-size: 60px;
+}
+
+Button {
+  height: 80px;
+  width: 80px;
+  font-size: large;
+  color: black;
+}
+
+body {
+  overflow-y: visible;
+  
+}
